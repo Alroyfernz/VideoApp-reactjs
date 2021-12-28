@@ -1,11 +1,11 @@
 import React, { createContext, useState, useRef, useEffect } from "react";
 import { io } from "socket.io-client";
-import Peer from "simple-peer";
+import peer from "simple-peer";
 
 const SocketContext = createContext();
 
 const socket = io("http://localhost:8000");
-const ContextProvider = ({ chlidren }) => {
+const ContextProvider = ({ children }) => {
   const [me, setMe] = useState("");
   const [name, setName] = useState("");
   const [stream, setStream] = useState(null);
@@ -71,4 +71,27 @@ const ContextProvider = ({ chlidren }) => {
     connectionRef.current.destroy();
     window.location.reload();
   };
+
+  return (
+    <SocketContext.Provider
+      value={{
+        call,
+        callAccepted,
+        myVideo,
+        userVideo,
+        stream,
+        name,
+        setName,
+        callEnded,
+        me,
+        callUser,
+        leaveCall,
+        answerCall,
+      }}
+    >
+      {children}
+    </SocketContext.Provider>
+  );
 };
+
+export { ContextProvider, SocketContext };
