@@ -9,7 +9,11 @@ const ContextProvider = ({ chlidren }) => {
   const [me, setMe] = useState("");
   const [stream, setStream] = useState(null);
   const [call, setCall] = useState({});
+  const [callAccepted, setCallAccepted] = useState(false);
+  const [callEnded, setCallEnded] = useState(false);
   const myVideo = useRef();
+  const userVideo = useRef();
+  const connectionRef = useRef();
 
   useEffect(() => {
     navigator.mediaDevices
@@ -25,11 +29,25 @@ const ContextProvider = ({ chlidren }) => {
       setMe(id);
     });
     socket.on("callUser", ({ from, name: callerName, singal }) => {
-      setCall({ isReceivedVall: true, from, name: callerName, singal });
+      setCall({ isReceivedCall: true, from, name: callerName, singal });
     });
   }, []);
-  const answerCall = () => {};
+  const answerCall = () => {
+    setCallAccepted(true);
+    const peer = new peer({ initiator: false, trickle: false, stream });
+    peer.on("signal", (data) => {
+      socket.emit("aswerCall", { singal: data, to: call.from });
+    });
+    peer.on("stream", (currentStream) => {
+      userVideo.current.srcObject = currentStream;
+    });
+    peer.signal(call.signal);
 
-  const callUser = () => {};
+    connectionRef.current = peer;
+  };
+
+  const callUser = () => {
+    const peer = new peer({ initiator: false, trickle: false, stream });
+  };
   const leaveCall = () => {};
 };
