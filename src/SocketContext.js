@@ -7,6 +7,7 @@ const SocketContext = createContext();
 const socket = io("http://localhost:8000");
 const ContextProvider = ({ chlidren }) => {
   const [me, setMe] = useState("");
+  const [name, setName] = useState("");
   const [stream, setStream] = useState(null);
   const [call, setCall] = useState({});
   const [callAccepted, setCallAccepted] = useState(false);
@@ -36,7 +37,7 @@ const ContextProvider = ({ chlidren }) => {
     setCallAccepted(true);
     const peer = new peer({ initiator: false, trickle: false, stream });
     peer.on("signal", (data) => {
-      socket.emit("aswerCall", { singal: data, to: call.from });
+      socket.emit("answerCall", { singal: data, to: call.from });
     });
     peer.on("stream", (currentStream) => {
       userVideo.current.srcObject = currentStream;
@@ -46,8 +47,28 @@ const ContextProvider = ({ chlidren }) => {
     connectionRef.current = peer;
   };
 
-  const callUser = () => {
-    const peer = new peer({ initiator: false, trickle: false, stream });
+  const callUser = (id) => {
+    const peer = new peer({ initiator: true, trickle: false, stream });
+    peer.on("signal", (data) => {
+      socket.emit("callUser", {
+        userToCall: id,
+        signalData: data,
+        from: me,
+        name,
+      });
+    });
+    peer.on("stream", (currentStream) => {
+      userVideo.current.srcObject = currentStream;
+    });
+    socket.on("callAccepted", (signal) => {
+      setCallAccepted(true);
+      peer.signal(signal);
+    });
+    connectionRef.current = peer;
   };
-  const leaveCall = () => {};
+  const leaveCall = () => {
+    setCallEnded(true);
+    connectionRef.current.destroy();
+    window.location.reload();
+  };
 };

@@ -21,7 +21,7 @@ io.on("connection", (socket) => {
     io.to(userIoCall).emit("callUser", { signal: signalData, from, name });
   });
   socket.on("answerCall", (data) => {
-    io.to(data.to).emit("callaccepted", data.signal);
+    io.to(data.to).emit("callAccepted", data.signal);
   });
 });
 server.listen(PORT, () => {
