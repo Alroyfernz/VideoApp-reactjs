@@ -1,6 +1,6 @@
 import React, { createContext, useState, useRef, useEffect } from "react";
 import { io } from "socket.io-client";
-import peer from "simple-peer";
+import Peer from "simple-peer";
 
 const SocketContext = createContext();
 
@@ -37,7 +37,7 @@ const ContextProvider = ({ children }) => {
   }, []);
   const answerCall = () => {
     setCallAccepted(true);
-    const peer = new peer({ initiator: false, trickle: false, stream });
+    const peer = new Peer({ initiator: false, trickle: false, stream });
     peer.on("signal", (data) => {
       socket.emit("answerCall", { singal: data, to: call.from });
     });
@@ -50,7 +50,7 @@ const ContextProvider = ({ children }) => {
   };
 
   const callUser = (id) => {
-    const peer = new peer({ initiator: true, trickle: false, stream });
+    const peer = new Peer({ initiator: true, trickle: false, stream });
     peer.on("signal", (data) => {
       socket.emit("callUser", {
         userToCall: id,
