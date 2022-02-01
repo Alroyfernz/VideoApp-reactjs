@@ -20,8 +20,10 @@ const ContextProvider = ({ children }) => {
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((response) => {
+        console.log(response);
         setStream(response);
         myVideo.current.srcObject = response;
+        console.log(myVideo);
       })
       .catch((error) => {
         console.log(error);
