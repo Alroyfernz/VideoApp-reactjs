@@ -18,9 +18,11 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("callEnded");
   });
   socket.on("callUser", ({ userToCall, signalData, from, name }) => {
+    console.log(userToCall, name, from, signalData);
     io.to(userToCall).emit("callUser", { signal: signalData, from, name });
   });
   socket.on("answerCall", (data) => {
+    console.log(data, "answerCall");
     io.to(data.to).emit("callAccepted", data.signal);
   });
 });

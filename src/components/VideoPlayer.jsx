@@ -35,7 +35,7 @@ const VideoPlayer = () => {
               {name || "Name"}
             </Typography>
             <video
-              playInline
+              playinline
               muted
               ref={myVideo}
               autoPlay
@@ -51,9 +51,9 @@ const VideoPlayer = () => {
               {call.name || "Name"}
             </Typography>
             <video
-              playInline
+              playinline
               ref={userVideo}
-              autoplay
+              autoPlay
               className={classes.video}
             />
           </Grid>
