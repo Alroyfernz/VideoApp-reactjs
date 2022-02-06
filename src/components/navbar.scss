@@ -1,0 +1,76 @@
+.navContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 60px;
+    padding: 12px 24px;
+    .navWrapper {
+        height: 100%;
+        width: 86.67%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .logoLeft {
+            width: 20%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: "center";
+            .logoMain {
+                height: fit-content;
+                color: #0e71eb;
+                width: 22%;
+                margin-right: 14px;
+            }
+            span {
+                font-size: 20px;
+                font-style: italic;
+                font-weight: 500;
+                color: #777;
+            }
+        }
+        .sectionRight {
+            height: 100%;
+            width: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .date {
+                font-weight: 400;
+                font-size: 20px;
+                width: 80%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                color: #777;
+
+                justify-content: flex-end;
+                .icons {
+                    margin-left: 22px;
+                    color: #777;
+                    display: flex;
+                    font-size: 25px;
+                    width: 30%;
+                    align-items: center;
+                    justify-content: space-around;
+                }
+            }
+            .avatar {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 20%;
+                height: 100%;
+                .options {
+                }
+                img {
+                    width: 44%;
+                    height: 70%;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+}

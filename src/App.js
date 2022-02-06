@@ -4,6 +4,7 @@ import VideoPlayer from "./components/VideoPlayer";
 import Notifications from "./components/Notifications";
 import Options from "./components/Options";
 import { makeStyles } from "@material-ui/core/styles";
+import Home from "./screens/Home";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -33,18 +34,19 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
   return (
-    <div className={classes.wrapper}>
-      <AppBar position="static" className={classes.appBar}>
-        <Typography variant="h2" align="center">
-          Video chat
-        </Typography>
-      </AppBar>
-      <VideoPlayer />
+    // <div className={classes.wrapper}>
+    //   <AppBar position="static" className={classes.appBar}>
+    //     <Typography variant="h2" align="center">
+    //       Video chat
+    //     </Typography>
+    //   </AppBar>
+    //   <VideoPlayer />
 
-      <Options>
-        <Notifications />
-      </Options>
-    </div>
+    //   <Options>
+    //     <Notifications />
+    //   </Options>
+    // </div>
+    <Home />
   );
 }
 
