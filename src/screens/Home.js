@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import { MdOutlineVideoCall } from "react-icons/md";
 import "./Home.scss";
+
 import { BsKeyboard } from "react-icons/bs";
 const Home = () => {
   const [isJoin, setIsJoin] = useState(false);
+
   return (
     <>
       <Navbar />
@@ -52,15 +54,21 @@ const Home = () => {
           </div>
           <div className="heroRight">
             <div className="rightWrapper">
-              <img
-                src="https://www.gstatic.com/meet/user_edu_get_a_link_light_90698cd7b4ca04d3005c962a3756c42d.svg"
-                alt=""
-              />
-              <h3>Get a code you can share</h3>
-              <p>
-                Click <span style={{ fontWeight: 400 }}>New meeting </span> to
-                get a code which you can ahre with the people you want to meet
-              </p>
+              <div>
+                <img
+                  src="https://www.gstatic.com/meet/user_edu_get_a_link_light_90698cd7b4ca04d3005c962a3756c42d.svg"
+                  alt=""
+                />
+                <h3>Get a code you can share</h3>
+                <p>
+                  Click{" "}
+                  <span style={{ fontWeight: 500, color: "#000" }}>
+                    New meeting{" "}
+                  </span>{" "}
+                  to get a code which you can ahre with the people you want to
+                  meet
+                </p>
+              </div>
             </div>
           </div>
         </div>

@@ -80,17 +80,24 @@ const Navbar = () => {
     switch (today.getDay() + 1) {
       case 1:
         setDay("Mon");
+        break;
       case 2:
         setDay("Tue");
+        break;
       case 3:
         setDay("Wed");
+        break;
       case 4:
         setDay("Thur");
+        break;
       case 5:
         setDay("Fri");
+        break;
       case 6:
         setDay("Sat");
-      case 7:
+        break;
+
+      default:
         setDay("Sun");
     }
   };

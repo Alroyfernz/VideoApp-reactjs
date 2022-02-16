@@ -1,3 +1,10 @@
+
+@import "~slick-carousel/slick/slick.css"; 
+@import "~slick-carousel/slick/slick-theme.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -6,6 +13,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  font-family: 'Open Sans', sans-serif;
   /* background-repeat: no-repeat;
   background-size: cover;
   background-image: url("https://relevance.digital/wp-content/uploads/2020/05/Best-Video-Calling-Apps-Social-Platforms-We-Used-During-The-COVID-19-Crisis-Relevance-2.jpg.webp"); */
