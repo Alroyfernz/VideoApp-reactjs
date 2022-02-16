@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
   /* background-repeat: no-repeat;
   background-size: cover;
   background-image: url("https://relevance.digital/wp-content/uploads/2020/05/Best-Video-Calling-Apps-Social-Platforms-We-Used-During-The-COVID-19-Crisis-Relevance-2.jpg.webp"); */

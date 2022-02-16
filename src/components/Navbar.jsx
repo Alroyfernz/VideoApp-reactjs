@@ -3,7 +3,8 @@ import "./navbar.scss";
 import { RiSettings3Fill } from "react-icons/ri";
 import { BsCameraVideo } from "react-icons/bs";
 import { FiHelpCircle } from "react-icons/fi";
-import { BsChatSquareText } from "react-icons//bs";
+import { FaBars } from "react-icons/fa";
+import { BsChatSquareText } from "react-icons/bs";
 const Navbar = () => {
   const [month, setMonth] = useState("");
   const [date, setDate] = useState(0);
@@ -119,6 +120,7 @@ const Navbar = () => {
             />
           </div>
         </div>
+        <FaBars className="mobileIcon" />
       </div>
     </div>
   );

@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    overflow: hidden;
     height: 60px;
     padding: 12px 24px;
     .navWrapper {
@@ -70,6 +71,33 @@
                     border-radius: 50%;
                     object-fit: cover;
                 }
+            }
+        }
+        .mobileIcon {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .navContainer {
+        width: unset;
+        padding: 8px 10px;
+        .navWrapper {
+            .logoLeft {
+                width: 50%;
+                .logoMain {
+                    font-size: 34px;
+                    width: unset;
+                }
+            }
+            .sectionRight {
+                display: none;
+            }
+            .mobileIcon {
+                display: block;
+                font-size: 33px;
+                color: #0e72ebd2;
             }
         }
     }
