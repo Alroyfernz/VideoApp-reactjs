@@ -1,16 +1,38 @@
 const app = require("express")();
 const cors = require("cors");
+require("dotenv").config();
+const passport = require("passport");
+const googleAuth = require("./routes/auth");
 const server = require("http").createServer(app);
-app.use(cors());
+const PORT = process.env.PORT || 8000;
+const passportSetup = require("./passport");
+const cookieSession = require("cookie-session");
+
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["mediquik"],
+    maxAge: 24 * 60 * 60 * 100,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(googleAuth);
+
+app.get("/", (req, res) => {
+  res.send("server running");
+});
 const io = require("socket.io")(server, {
   cors: {
     origin: "*",
     method: ["GET", "POST"],
   },
-});
-const PORT = process.env.PORT || 8000;
-app.get("/", (req, res) => {
-  res.send("server running");
 });
 io.on("connection", (socket) => {
   socket.emit("me", socket.id);
