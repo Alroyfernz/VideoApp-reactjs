@@ -5,6 +5,7 @@ import Notifications from "./components/Notifications";
 import Options from "./components/Options";
 import { makeStyles } from "@material-ui/core/styles";
 import Home from "./screens/Home";
+import Login from "./screens/Login";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -46,7 +47,8 @@ function App() {
     //     <Notifications />
     //   </Options>
     // </div>
-    <Home />
+    // <Home />
+    <Login />
   );
 }
 
