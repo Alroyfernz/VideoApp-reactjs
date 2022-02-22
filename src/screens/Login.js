@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Login.scss";
 import Navbar from "../components/Navbar";
 import { FcGoogle } from "react-icons/fc";
+import axios from "axios";
 const Login = () => {
+  const google = () => {
+    window.open("http://localhost:8000/auth/google", "_self");
+  };
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const res = await axios("http://localhost:8000/login/success");
+        console.log(res);
+      } catch (error) {}
+    };
+
+    getUser();
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -17,7 +32,12 @@ const Login = () => {
                 This service, which provides video meeting facility in good
                 quality, can now be used by anyone on any device.
               </p>
-              <button className="loginBtn">
+              <button
+                className="loginBtn"
+                onClick={() => {
+                  google();
+                }}
+              >
                 <FcGoogle style={{ fontSize: 22, marginRight: 18 }} />
                 Continue with google
               </button>

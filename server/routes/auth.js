@@ -29,8 +29,18 @@ router.get(
   "/auth/google/callback",
   passport.authenticate("google", {
     failureRedirect: "/login/failure",
-    successRedirect: "/login/success",
-  })
+  }),
+  function (req, res) {
+    if (req.user) {
+      res.redirect("http://localhost:3000/");
+      res.status(200).json({
+        success: true,
+        message: "successfull",
+        user: req.user,
+        cookies: req.cookies,
+      });
+    }
+  }
 );
 
 module.exports = router;
