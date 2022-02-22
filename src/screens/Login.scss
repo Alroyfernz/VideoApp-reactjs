@@ -49,9 +49,28 @@
                     border: 1px solid #000;
                     border-radius: 24px;
                     padding: 10px 0;
-
+                    position: relative;
+                    vertical-align: middle;
+                    overflow: hidden;
+                    transition: color 0.3s ease;
                     &:hover {
                         cursor: pointer;
+                        color: rgb(0, 44, 190) !important;
+                        border: 1px solid #0e71eb;
+                    }
+                    &::before {
+                        content: " ";
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        height: 100%;
+                        width: 0%;
+                        background-color: #4183d4;
+                        opacity: 0.4;
+                        transition: width 0.3s ease;
+                    }
+                    &:hover::before {
+                        width: 100%;
                     }
                 }
             }
@@ -113,6 +132,7 @@
             .right {
                 margin-top: 50px;
                 width: 100%;
+                padding-bottom: 30px;
             }
         }
     }
