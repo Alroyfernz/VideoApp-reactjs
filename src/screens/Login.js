@@ -4,8 +4,9 @@ import Navbar from "../components/Navbar";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
 const Login = () => {
-  const google = () => {
+  const google = async () => {
     window.open("http://localhost:8000/auth/google", "_self");
+    localStorage.setItem("userInfo", "data");
   };
   useEffect(() => {
     const getUser = async () => {

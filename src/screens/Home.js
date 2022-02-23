@@ -1,11 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { MdOutlineVideoCall } from "react-icons/md";
 import "./Home.scss";
-
+import axios from "axios";
 import { BsKeyboard } from "react-icons/bs";
 const Home = () => {
   const [isJoin, setIsJoin] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const getUser = async () => {
+      // fetch("http://localhost:8000/login/success", {
+      //   method: "GET",
+      //   credentials: "include",
+      //   headers: {
+      //     Accept: "application/json",
+      //     "Content-Type": "application/json",
+      //     "Access-Control-Allow-Credentials": "true",
+      //   },
+      // })
+      //   .then((response) => {
+      //     if (response.status === 200) return response.json();
+      //     throw new Error("authentication has been failed!");
+      //   })
+      //   .then((resObject) => {
+      //     setUser(resObject.user);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+
+      const res = await axios.get("http://localhost:8000/login/success", {
+        withCredentials: true,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": "true",
+        },
+      });
+      console.log(res);
+      if (res.status === 200) {
+        localStorage.setItem("userData", JSON.stringify(res.data.user));
+        setUser(res.data.user);
+
+        console.log(user);
+      }
+    };
+    getUser();
+  }, []);
 
   return (
     <>

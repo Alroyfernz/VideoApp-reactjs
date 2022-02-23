@@ -10,13 +10,14 @@ const cookieSession = require("cookie-session");
 
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:3000",
+    credentials: true,
   })
 );
 app.use(
   cookieSession({
     name: "session",
-    keys: ["mediquik"],
+    keys: ["anymeet"],
     maxAge: 24 * 60 * 60 * 100,
   })
 );
