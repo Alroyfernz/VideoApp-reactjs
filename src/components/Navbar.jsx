@@ -20,6 +20,7 @@ import { FaBars } from "react-icons/fa";
 import { BsChatSquareText } from "react-icons/bs";
 const Navbar = () => {
   const navigate = useNavigate();
+  const user = localStorage.getItem("userData");
   const [month, setMonth] = useState("");
   const [date, setDate] = useState(0);
   const [day, setDay] = useState("");
@@ -125,35 +126,45 @@ const Navbar = () => {
           <BsCameraVideo className="logoMain" />
           <span>Anymeet</span>
         </div>
-        <div className="sectionRight">
-          <div className="date">
-            {hr}:{min} {isPm} •{month},{day} {date}
-            <div className="icons">
-              <BsChatSquareText className="chat" />
-              <FiHelpCircle className="help" />
-              <RiSettings3Fill className="setting" />
-            </div>
-          </div>
-          <div className="avatar">
-            <Menu>
-              <MenuButton as={Button} style={{ backgroundColor: "white" }}>
-                <img
-                  src="https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=199"
-                  alt="avatar"
-                />
-              </MenuButton>
-              <MenuList>
-                <MenuItem
-                  onClick={() => {
-                    localStorage.removeItem("userData");
-                    navigate("/login");
-                  }}
-                >
-                  Log out
-                </MenuItem>
-              </MenuList>
-            </Menu>
-          </div>
+        <div
+          className="sectionRight"
+          style={{ width: user == null ? "unset" : "40%" }}
+        >
+          {user == null ? (
+            <button className="loginBtn">Login to continue</button>
+          ) : (
+            <>
+              {" "}
+              <div className="date">
+                {hr}:{min} {isPm} •{month},{day} {date}
+                <div className="icons">
+                  <BsChatSquareText className="chat" />
+                  <FiHelpCircle className="help" />
+                  <RiSettings3Fill className="setting" />
+                </div>
+              </div>
+              <div className="avatar">
+                <Menu>
+                  <MenuButton as={Button} style={{ backgroundColor: "white" }}>
+                    <img
+                      src="https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=199"
+                      alt="avatar"
+                    />
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem
+                      onClick={() => {
+                        localStorage.removeItem("userData");
+                        navigate("/login");
+                      }}
+                    >
+                      Log out
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
+              </div>
+            </>
+          )}
         </div>
         <FaBars className="mobileIcon" />
       </div>
