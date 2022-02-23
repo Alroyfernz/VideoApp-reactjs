@@ -3,9 +3,13 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { ContextProvider } from "./SocketContext";
+import { ChakraProvider } from "@chakra-ui/react";
+
 ReactDOM.render(
   <ContextProvider>
-    <App />
+    <ChakraProvider>
+      <App />
+    </ChakraProvider>
   </ContextProvider>,
   document.getElementById("root")
 );

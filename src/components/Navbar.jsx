@@ -3,9 +3,23 @@ import "./navbar.scss";
 import { RiSettings3Fill } from "react-icons/ri";
 import { BsCameraVideo } from "react-icons/bs";
 import { FiHelpCircle } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
+
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+  Button,
+} from "@chakra-ui/react";
 import { FaBars } from "react-icons/fa";
 import { BsChatSquareText } from "react-icons/bs";
 const Navbar = () => {
+  const navigate = useNavigate();
   const [month, setMonth] = useState("");
   const [date, setDate] = useState(0);
   const [day, setDay] = useState("");
@@ -121,10 +135,24 @@ const Navbar = () => {
             </div>
           </div>
           <div className="avatar">
-            <img
-              src="https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=199"
-              alt="avatar"
-            />
+            <Menu>
+              <MenuButton as={Button} style={{ backgroundColor: "white" }}>
+                <img
+                  src="https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=199"
+                  alt="avatar"
+                />
+              </MenuButton>
+              <MenuList>
+                <MenuItem
+                  onClick={() => {
+                    localStorage.removeItem("userData");
+                    navigate("/login");
+                  }}
+                >
+                  Log out
+                </MenuItem>
+              </MenuList>
+            </Menu>
           </div>
         </div>
         <FaBars className="mobileIcon" />

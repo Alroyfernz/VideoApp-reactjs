@@ -3,6 +3,16 @@ import Navbar from "../components/Navbar";
 import { MdOutlineVideoCall } from "react-icons/md";
 import "./Home.scss";
 import axios from "axios";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+} from "@chakra-ui/react";
 import { BsKeyboard } from "react-icons/bs";
 const Home = () => {
   const [isJoin, setIsJoin] = useState(false);
