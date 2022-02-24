@@ -80,10 +80,12 @@ const Home = () => {
               meetings, Google Meet, to make it free and available for all.
             </p>
             <div className="bottomButtons">
-              <button className="createMeet">
-                <MdOutlineVideoCall className="video" />
-                new meeting
-              </button>
+              <a href="/call">
+                <button className="createMeet">
+                  <MdOutlineVideoCall className="video" />
+                  new meeting
+                </button>
+              </a>
               <div className="inputWrapper">
                 <div
                   className="inputMeeting"
