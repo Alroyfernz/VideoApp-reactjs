@@ -24,6 +24,9 @@
             .userAvatar {
                 width: 180px;
                 object-fit: contain;
+                position: absolute;
+                top: 34%;
+                left: 43%;
                 border-radius: 50%;
             }
             .userName {

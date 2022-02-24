@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { FaMicrophone } from "react-icons/fa";
-import { BsCameraVideo } from "react-icons/bs";
+import { BsCameraVideo, BsCameraVideoOff } from "react-icons/bs";
 import { FaRegClosedCaptioning } from "react-icons/fa";
 import { HiDotsVertical } from "react-icons/hi";
+import { SocketContext } from "../SocketContext";
+
 import {
   MdInfoOutline,
   MdOutlinePeopleAlt,
@@ -12,7 +14,11 @@ import {
 } from "react-icons/md";
 import "./call.scss";
 const Call = () => {
+  const { call, callAccepted, myVideo, userVideo, stream, name, callEnded } =
+    useContext(SocketContext);
+  console.log(myVideo);
   const secondUser = null;
+  const [hideVideo, setHideVideo] = useState(false);
   return (
     <section className="callSection">
       <div className="callWrapper">
@@ -22,7 +28,20 @@ const Call = () => {
               src="https://yt3.ggpht.com/ytc/AKedOLQMxO5ybJytpgAsgyYDiMw2lrUpVGo1YZddOKEljQ=s900-c-k-c0x00ffffff-no-rj"
               alt=""
               className="userAvatar"
+              style={{ opacity: hideVideo ? 1 : 0 }}
             />
+
+            <video
+              playinline="true"
+              muted
+              ref={myVideo}
+              autoPlay
+              style={{
+                width: "100%",
+                height: "100%",
+                display: hideVideo ? "none" : "flex",
+              }}
+            ></video>
             <span className="userName">user name</span>
           </div>
         ) : (
@@ -63,8 +82,20 @@ const Call = () => {
           <div className="iconsMain">
             <FaMicrophone className="optionsIcons" stlye={{ fontSize: 16 }} />
           </div>
-          <div className="iconsMain">
-            <BsCameraVideo className="optionsIcons" />
+          <div
+            className="iconsMain"
+            onClick={() => {
+              setHideVideo(!hideVideo);
+            }}
+          >
+            {hideVideo ? (
+              <BsCameraVideoOff
+                className="optionsIcons"
+                style={{ color: "red" }}
+              />
+            ) : (
+              <BsCameraVideo className="optionsIcons" />
+            )}
           </div>
           <div className="iconsMain">
             <FaRegClosedCaptioning className="optionsIcons" />
