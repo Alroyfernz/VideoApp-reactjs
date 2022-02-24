@@ -8,6 +8,7 @@ import Home from "./screens/Home";
 
 import Login from "./screens/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Call from "./screens/Call";
 
 function App() {
   const user = localStorage.getItem("userInfo");
@@ -29,6 +30,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/call" element={<Call />} />
       </Routes>
     </BrowserRouter>
   );

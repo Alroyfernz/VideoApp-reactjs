@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 import { MdOutlineVideoCall } from "react-icons/md";
 import "./Home.scss";
 import axios from "axios";
@@ -15,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { BsKeyboard } from "react-icons/bs";
 const Home = () => {
+  const navigation = useNavigate();
   const [isJoin, setIsJoin] = useState(false);
   const [user, setUser] = useState(null);
 
@@ -57,7 +59,11 @@ const Home = () => {
       }
     };
     getUser();
-  }, []);
+    if (localStorage.getItem("userData") == null) {
+      console.log("bruh zaina");
+      navigation("/login");
+    }
+  }, [navigation]);
 
   return (
     <>

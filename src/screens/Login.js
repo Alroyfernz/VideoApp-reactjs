@@ -1,23 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Login.scss";
 import Navbar from "../components/Navbar";
 import { FcGoogle } from "react-icons/fc";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
+  const navigation = useNavigate();
+
+  if (localStorage.getItem("userInfo") != null) {
+    navigation("/");
+  }
   const google = async () => {
     window.open("http://localhost:8000/auth/google", "_self");
-    localStorage.setItem("userInfo", "data");
-  };
-  useEffect(() => {
-    const getUser = async () => {
-      try {
-        const res = await axios("http://localhost:8000/login/success");
-        console.log(res);
-      } catch (error) {}
-    };
 
-    getUser();
-  }, []);
+    navigation("/");
+  };
 
   return (
     <>
