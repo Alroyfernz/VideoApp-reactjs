@@ -323,7 +323,7 @@ const Home = () => {
             </h1>
             <p>
               We re-engineered the service we built for secure business
-              meetings, Google Meet, to make it free and available for all.
+              meetings, any Meet, to make it free and available for all.
             </p>
             <div className="bottomButtons">
               <button
