@@ -4,7 +4,16 @@ import { RiSettings3Fill } from "react-icons/ri";
 import { BsCameraVideo } from "react-icons/bs";
 import { FiHelpCircle } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-
+import {
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useDisclosure,
+} from "@chakra-ui/react";
 import {
   Menu,
   MenuButton,
@@ -19,6 +28,9 @@ import {
 import { FaBars } from "react-icons/fa";
 import { BsChatSquareText } from "react-icons/bs";
 const Navbar = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef();
+
   const navigate = useNavigate();
   const user = localStorage.getItem("userData");
   const [month, setMonth] = useState("");
@@ -166,7 +178,24 @@ const Navbar = () => {
             </>
           )}
         </div>
-        <FaBars className="mobileIcon" />
+
+        <FaBars className="mobileIcon" ref={btnRef} onClick={onOpen} />
+
+        <Drawer
+          isOpen={isOpen}
+          placement="right"
+          onClose={onClose}
+          finalFocusRef={btnRef}
+        >
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerCloseButton />
+
+            <DrawerBody style={{ display: "grid", alignItems: "center" }}>
+              <Button>Logout</Button>
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
       </div>
     </div>
   );
