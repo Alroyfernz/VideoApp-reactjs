@@ -105,7 +105,10 @@ const Options = ({ children }) => {
                   color="primary"
                   startIcon={<Phone fontSize="large" />}
                   fullWidth
-                  onClick={() => callUser(idToCall)}
+                  onClick={() => {
+                    callUser(idToCall);
+                    console.log(callAccepted);
+                  }}
                   className={classes.margin}
                 >
                   Call
