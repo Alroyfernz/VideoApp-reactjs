@@ -202,6 +202,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media screen and (max-width: 768px) {
+        justify-content: center;
+    }
     .time {
         margin-left: 2%;
         width: 15%;
@@ -211,6 +214,9 @@
         h3 {
             color: rgb(80, 77, 77);
             font-size: 20px;
+        }
+        @media screen and (max-width: 768px) {
+            display: none;
         }
     }
     .options {
@@ -247,6 +253,9 @@
         }
     }
     .right {
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
         width: 18%;
         display: flex;
         align-items: center;
@@ -307,5 +316,16 @@
                 background-color: rgb(74, 179, 221);
             }
         }
+    }
+}
+.videoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
     }
 }

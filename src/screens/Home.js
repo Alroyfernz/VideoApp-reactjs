@@ -223,14 +223,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
+          <div className="videoContainer">
             <video
               ref={myVideo}
               playinline
