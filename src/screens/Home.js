@@ -57,9 +57,10 @@ const Home = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const onClose = () => setIsOpen(false);
   const cancelRef = React.useRef();
-
+  const [showId, setShowId] = useState(true);
   const [isJoin, setIsJoin] = useState(false);
   const [user, setUser] = useState(null);
+  const [caller, setCaller] = useState(true);
   const [showSpinner, setSpin] = useState(false);
   const callIdRef = useRef(null);
   const [showMod, setMod] = useState(false);
@@ -90,46 +91,43 @@ const Home = () => {
       setHr(today.getHours());
     }
   };
-  const { callAccepted, setName, callUser, stream, me, userVideo, myVideo } =
-    useContext(SocketContext);
+  const {
+    leaveCall,
+    name,
+    callEnded,
+    callAccepted,
+    setName,
+
+    callUser,
+    stream,
+    me,
+    userVideo,
+    myVideo,
+    answerCall,
+    call,
+  } = useContext(SocketContext);
   console.log(myVideo);
   // if (myVideo) localStorage.setItem("myVideo", JSON.stringify(myVideo));
   const handleCall = () => {
-    setShowCall(true);
-    console.log("how tf called?");
+    setCaller(false);
     console.log(callIdRef?.current.value);
     // if (callIdRef?.current.value == "") return;
     callUser(callIdRef?.current.value);
     setSpin(false);
     console.log(callAccepted, "accepted? from home");
     if (callAccepted) {
-      setSpin(false);
-      navigation("/call");
     }
+    setTimeout(() => {
+      setShowCall(true);
+    }, 3000);
   };
   useEffect(() => {
     validateDate();
+    if (call.isReceivingCall && !callAccepted) {
+      setIsOpen(true);
+      console.log(callAccepted, "kelo re accept??");
+    }
     const getUser = async () => {
-      // fetch("http://localhost:8000/login/success", {
-      //   method: "GET",
-      //   credentials: "include",
-      //   headers: {
-      //     Accept: "application/json",
-      //     "Content-Type": "application/json",
-      //     "Access-Control-Allow-Credentials": "true",
-      //   },
-      // })
-      //   .then((response) => {
-      //     if (response.status === 200) return response.json();
-      //     throw new Error("authentication has been failed!");
-      //   })
-      //   .then((resObject) => {
-      //     setUser(resObject.user);
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
-
       const res = await axios.get("http://localhost:8000/login/success", {
         withCredentials: true,
         headers: {
@@ -152,7 +150,8 @@ const Home = () => {
       console.log("bruh zaina");
       navigation("/login");
     }
-  }, [navigation]);
+    if (callEnded) setShowCall(false);
+  }, [navigation, call.isReceivingCall, callAccepted, callEnded]);
 
   return (
     <>
@@ -178,19 +177,34 @@ const Home = () => {
                 </AlertDialogHeader>
 
                 <AlertDialogBody style={{ textTransform: "capitalize" }}>
-                  alroy is trying to join...
+                  {name} is trying to join...
                 </AlertDialogBody>
 
                 <AlertDialogFooter>
                   <Button colorScheme="red" ref={cancelRef} onClick={onClose}>
                     Reject
                   </Button>
-                  <Button ml={3}>Accept</Button>
+                  <Button
+                    ml={3}
+                    onClick={() => {
+                      onClose();
+                      answerCall();
+                    }}
+                  >
+                    Accept
+                  </Button>
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialogOverlay>
           </AlertDialog>
-          <div className="copyId">
+          <div
+            className="copyId"
+            style={{
+              display: caller ? "flex" : "none",
+              opacity: showId ? "1" : "0",
+              transition: "opacity 0.3s ease-in-out",
+            }}
+          >
             <div className="idWrapper">
               <div className="top">
                 <span
@@ -204,7 +218,11 @@ const Home = () => {
                   Your meeting is ready
                 </span>
 
-                <span>
+                <span
+                  onClick={() => {
+                    setShowId(!showId);
+                  }}
+                >
                   <CgClose
                     style={{ fontSize: 20, color: "#666", cursor: "pointer" }}
                   />
@@ -226,7 +244,7 @@ const Home = () => {
           <div className="videoContainer">
             <video
               ref={myVideo}
-              playinline
+              playinline="true"
               autoPlay
               muted
               style={{
@@ -235,10 +253,13 @@ const Home = () => {
               }}
             />
             <video
-              playinline
-              src="https://youtu.be/5qap5aO4i9A"
+              style={{
+                borderRadius: 9,
+                display: !showCall ? "none" : "block",
+              }}
+              playinline="true"
+              ref={userVideo}
               autoPlay
-              muted
             />
           </div>
           <div className="bottomNavigation">
@@ -263,7 +284,12 @@ const Home = () => {
               <div className="iconsMain">
                 <MdOutlineScreenShare className="optionsIcons" />
               </div>
-              <div className="iconsMain">
+              <div
+                className="iconsMain"
+                onClick={() => {
+                  setShowId(!showId);
+                }}
+              >
                 <HiDotsVertical className="optionsIcons" />
               </div>
               <div className="endCall">
@@ -271,6 +297,7 @@ const Home = () => {
                   style={{ color: "#fff", fontSize: 20 }}
                   onClick={() => {
                     setShowCall(false);
+                    leaveCall();
                   }}
                 />
               </div>

@@ -80,6 +80,7 @@ const ContextProvider = ({ children }) => {
   };
   const leaveCall = () => {
     setCallEnded(true);
+    console.log("cut the phone");
     connectionRef.current.destroy();
     window.location.reload();
   };
