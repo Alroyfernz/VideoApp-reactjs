@@ -145,7 +145,7 @@ const Home = () => {
         localStorage.setItem("userData", JSON.stringify(res.data.user));
         // setName(res.data.user.)
         setUser(res.data.user);
-        setName(res?.data.user.displayName);
+        setName(res?.data?.user?.displayName);
         console.log(user);
       }
     };

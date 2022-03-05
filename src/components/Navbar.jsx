@@ -29,7 +29,7 @@ import { FaBars } from "react-icons/fa";
 import { BsChatSquareText } from "react-icons/bs";
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef();
+  // const btnRef = React.useRef();
 
   const navigate = useNavigate();
   const user = localStorage.getItem("userData");
@@ -179,14 +179,9 @@ const Navbar = () => {
           )}
         </div>
 
-        <FaBars className="mobileIcon" ref={btnRef} onClick={onOpen} />
+        <FaBars className="mobileIcon" onClick={onOpen} />
 
-        <Drawer
-          isOpen={isOpen}
-          placement="right"
-          onClose={onClose}
-          finalFocusRef={btnRef}
-        >
+        <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton />
