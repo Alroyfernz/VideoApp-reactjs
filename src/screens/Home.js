@@ -259,6 +259,7 @@ const Home = () => {
             <video
               style={{
                 borderRadius: 9,
+                height: 250,
                 display: !showCall ? "none" : "block",
               }}
               playinline="true"

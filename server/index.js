@@ -10,7 +10,7 @@ const cookieSession = require("cookie-session");
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://video-app-reactjs.vercel.app",
     credentials: true,
   })
 );
