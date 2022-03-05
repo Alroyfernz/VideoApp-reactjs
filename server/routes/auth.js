@@ -43,7 +43,7 @@ router.get(
   "/auth/google/callback",
   passport.authenticate("google", {
     failureRedirect: "/login/failure",
-    successRedirect: "http://localhost:3000/",
+    successRedirect: "https://video-app-reactjs.vercel.app/",
   })
   // function (req, res) {
   //   if (req.user) {
