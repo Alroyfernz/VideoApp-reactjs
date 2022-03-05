@@ -120,7 +120,7 @@ const Home = () => {
     }
     setTimeout(() => {
       setShowCall(true);
-    }, 3000);
+    }, 7000);
   };
   useEffect(() => {
     validateDate();
@@ -129,14 +129,17 @@ const Home = () => {
       console.log(callAccepted, "kelo re accept??");
     }
     const getUser = async () => {
-      const res = await axios.get("http://localhost:8000/login/success", {
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": "true",
-        },
-      });
+      const res = await axios.get(
+        "https://any-meet.herokuapp.com/login/success",
+        {
+          withCredentials: true,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Credentials": "true",
+          },
+        }
+      );
       console.log(res);
       if (res.status === 200) {
         localStorage.setItem("userData", JSON.stringify(res.data.user));

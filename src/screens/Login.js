@@ -11,7 +11,7 @@ const Login = () => {
     navigation("/");
   }
   const google = async () => {
-    window.open("http://localhost:8000/auth/google", "_self");
+    window.open("https://any-meet.herokuapp.com/auth/google", "_self");
 
     navigation("/");
   };
