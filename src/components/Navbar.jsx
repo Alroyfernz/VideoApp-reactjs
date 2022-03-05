@@ -192,7 +192,14 @@ const Navbar = () => {
             <DrawerCloseButton />
 
             <DrawerBody style={{ display: "grid", alignItems: "center" }}>
-              <Button>Logout</Button>
+              <Button
+                onClick={() => {
+                  localStorage.removeItem("userData");
+                  navigate("/login");
+                }}
+              >
+                Logout
+              </Button>
             </DrawerBody>
           </DrawerContent>
         </Drawer>
